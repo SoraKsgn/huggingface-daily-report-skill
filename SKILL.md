@@ -103,11 +103,14 @@ node scripts/create_document.js --title "Report Title"
 详细描述核心贡献（2-3 句话）。必须清晰说明论文的主要创新点和解决的问题。
 
 **🔬 关键技术**:
-- **Technique 1**: 描述该技术的作用和原理（1-2 句话）
-- **Technique 2**: 描述该技术的作用和原理（1-2 句话）
-- **Technique 3**: 描述该技术的作用和原理（1-2 句话）
+- **技术中文名（English Name）**: 描述该技术的作用和原理（1-2 句话）
+- **技术中文名（English Name）**: 描述该技术的作用和原理（1-2 句话）
+- **技术中文名（English Name）**: 描述该技术的作用和原理（1-2 句话）
 
-> ⚠️ **注意**: 关键技术不能只写关键词，必须包含简短的解释说明，让读者理解每个技术的作用。
+> ⚠️ **注意**: 
+> 1. 关键技术不能只写关键词，必须包含简短的解释说明
+> 2. 技术名称必须使用**中文（英文）**格式，例如：自进化 AI 社会（Self-Evolving AI Society）
+> 3. 每项技术需要说明其作用和在论文中的具体应用
 
 **📊 实验结果**:
 - 具体的实验结果和性能指标
@@ -216,7 +219,7 @@ Example:
 ```json
 {
   "action": "send",
-  "message": "📊 HuggingFace Daily Report - 2026-02-22\n\n【1. Paper Title - Institution】\n🔥 热度：当日最热\n🔬 方向：Agentic RL / Multimodal\n📌 核心：详细描述核心贡献（2-3 句话）\n🔬 技术：Technique1（作用说明）, Technique2（作用说明）, Technique3（作用说明）\n📊 结果：具体的实验结果和性能指标\n🔗 HF Papers: https://huggingface.co/papers/...\n\n【2. Paper Title - Institution】\n🔥 热度：高度关注\n🔬 方向：Code Generation / Efficiency\n📌 核心：...\n🔬 技术：...\n📊 结果：...\n🔗 HF Papers: https://huggingface.co/papers/...\n\n📈 今日趋势：高效模型、具身智能成为热点\n\n📄 完整文档：https://feishu.cn/docx/...\n\n*报告由 蛋仔 🐰 整理*"
+  "message": "📊 HuggingFace Daily Report - 2026-02-22\n\n【1. Paper Title - Institution】\n🔥 热度：当日最热\n🔬 方向：Agentic RL / Multimodal\n📌 核心：详细描述核心贡献（2-3 句话）\n🔬 技术：技术中文名 1（English，作用说明）, 技术中文名 2（English，作用说明）, 技术中文名 3（English，作用说明）\n📊 结果：具体的实验结果和性能指标\n🔗 HF Papers: https://huggingface.co/papers/...\n\n【2. Paper Title - Institution】\n🔥 热度：高度关注\n🔬 方向：Code Generation / Efficiency\n📌 核心：...\n🔬 技术：...\n📊 结果：...\n🔗 HF Papers: https://huggingface.co/papers/...\n\n📈 今日趋势：高效模型、具身智能成为热点\n\n📄 完整文档：https://feishu.cn/docx/...\n\n*报告由 蛋仔 🐰 整理*"
 }
 ```
 
@@ -264,7 +267,7 @@ Message Output (WITH HF LINKS):
 
 【1. SpargeAttention2 - 清华大学】
 核心贡献：可训练稀疏注意力方法，动态选择关键 token 进行计算
-关键技术：混合掩码规则（结合局部和全局注意力）、高效实现（CUDA 优化）
+关键技术：混合掩码规则（Hybrid Masking，结合局部和全局注意力）、高效 CUDA 实现（Efficient Implementation，GPU 优化加速）
 实验结果：95% 稀疏度，16.2 倍加速，性能损失<1%
 🔗 HF Papers: https://huggingface.co/papers/2602.13515
 
