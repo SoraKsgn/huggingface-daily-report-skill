@@ -72,105 +72,22 @@
 ls ~/.openclaw/workspace/skills/
 ```
 
-### API 配置 / API Configuration
+### 技术栈 / Tech Stack
 
-#### 1. 阿里云百炼 / Alibaba Cloud Bailian（必需）
+本 Skill 在构建和测试时使用以下技术组合：
 
-| 项目 | 配置 |
-|------|------|
-| **模型提供商** | 阿里云百炼 (Bailian) |
-| **模型名称** | Qwen3.5-Plus |
-| **模型 ID** | `bailian/qwen3.5-plus` |
-| **上下文窗口** | 256K tokens |
-| **用途** | 论文内容分析、报告生成 |
+| 组件 | 说明 | 必需 |
+|------|------|------|
+| **模型** | Qwen3.5-Plus (阿里云百炼) | ✅ 是 |
+| **搜索** | Tavily AI Search | ⚠️ 推荐（可替换） |
+| **平台** | 飞书 (Feishu) | ✅ 是 |
 
-**配置方式**：
+**说明**：
+- **Qwen3.5-Plus**: 用于论文内容分析和报告生成
+- **Tavily**: 用于搜索 HuggingFace Daily Papers（可用其他搜索方式替代）
+- **飞书**: 用于文档创建和消息推送
 
-在 `~/.openclaw/openclaw.json` 中配置：
-```json
-{
-  "models": {
-    "default": "bailian/qwen3.5-plus",
-    "aliases": {
-      "qwen3.5-plus": "bailian/qwen3.5-plus"
-    }
-  },
-  "providers": {
-    "bailian": {
-      "apiKey": "YOUR_BAILIAN_API_KEY"
-    }
-  }
-}
-```
-
-⚠️ **重要**: 不要将真实的 API Key 提交到 Git 仓库！
-
-#### 2. Tavily API（推荐）
-
-| 项目 | 配置 |
-|------|------|
-| **服务** | Tavily AI Search |
-| **用途** | 搜索 HuggingFace 论文 |
-| **免费额度** | 1000 次/月 |
-| **配置** | `TAVILY_API_KEY` 环境变量 |
-
-**获取 API Key**：
-1. 访问 https://tavily.com/
-2. 注册账号
-3. 获取 API Key
-4. 添加到环境变量：
-
-```bash
-export TAVILY_API_KEY="tvly-xxxxxxxxxxxxxxxxxxxxxxxx"
-```
-
-⚠️ **重要**: 不要将真实的 API Key 提交到 Git 仓库！
-
-#### 3. 飞书开放平台 / Feishu Open Platform（必需）
-
-**步骤**：
-
-1. **创建飞书应用**
-   - 访问 https://open.feishu.cn/app
-   - 点击「创建应用」
-   - 填写应用信息
-
-2. **配置机器人权限**
-   
-   进入「机器人」→「权限管理」，添加以下权限：
-   ```
-   ✅ 发送消息
-   ✅ 创建云文档
-   ✅ 创建多维表格
-   ✅ 访问云空间
-   ✅ 读取用户信息
-   ```
-
-3. **获取凭证**
-   
-   进入「凭证与基础信息」，记录：
-   ```
-   App ID: cli_xxxxxxxxxxxxxxxx
-   App Secret: xxxxxxxxxxxxxxxxxxxxxxxx
-   ```
-   
-   ⚠️ **重要**: 不要将真实的 App Secret 提交到 Git 仓库！
-
-4. **配置 OpenClaw**
-   
-   在 `~/.openclaw/openclaw.json` 中配置：
-   ```json
-   {
-     "channels": {
-       "feishu": {
-         "enabled": true,
-         "appId": "cli_xxxxxxxxxxxxxxxx",
-         "appSecret": "YOUR_APP_SECRET",
-         "dmPolicy": "open"
-       }
-     }
-   }
-   ```
+> 💡 **提示**: 你可以根据自己的需求替换搜索工具或模型，只需修改 `SKILL.md` 中的相关配置即可。
 
 ---
 
@@ -222,57 +139,21 @@ ls ~/.openclaw/extensions/feishu/
 
 ### 2. 配置飞书
 
-编辑 `~/.openclaw/openclaw.json`：
+确保已在 OpenClaw 中配置飞书频道。参考 OpenClaw 文档进行配置。
 
-```json
-{
-  "channels": {
-    "feishu": {
-      "enabled": true,
-      "appId": "cli_xxxxxxxxxxxxxxxx",
-      "appSecret": "YOUR_APP_SECRET",
-      "dmPolicy": "open",
-      "allowFrom": ["*"]
-    }
-  }
-}
-```
+### 3. 配置模型（可选）
 
-### 3. 配置模型
-
-编辑 `~/.openclaw/openclaw.json`：
+本 Skill 默认使用 `qwen3.5-plus` 模型。如需修改，编辑 `~/.openclaw/openclaw.json`：
 
 ```json
 {
   "models": {
-    "default": "bailian/qwen3.5-plus",
-    "aliases": {
-      "qwen3.5-plus": "bailian/qwen3.5-plus"
-    }
-  },
-  "providers": {
-    "bailian": {
-      "apiKey": "YOUR_BAILIAN_API_KEY"
-    }
+    "default": "bailian/qwen3.5-plus"
   }
 }
 ```
 
-### 4. 配置 Tavily（可选）
-
-```bash
-# 添加到 ~/.zshrc 或 ~/.bashrc
-export TAVILY_API_KEY="tvly-xxxxxxxxxxxxxxxxxxxxxxxx"
-
-# 或者添加到 ~/.openclaw/openclaw.json
-{
-  "env": {
-    "TAVILY_API_KEY": "tvly-xxxxxxxxxxxxxxxxxxxxxxxx"
-  }
-}
-```
-
-### 5. 重启 Gateway
+### 4. 重启 Gateway
 
 ```bash
 openclaw gateway restart
@@ -427,22 +308,16 @@ openclaw cron list
 **症状**: `Tavily API key not found`
 
 **解决方案**:
-```bash
-# 检查 API Key 是否配置
-echo $TAVILY_API_KEY
-
-# 如果为空，添加配置
-export TAVILY_API_KEY="tvly-xxxxxxxx"
-```
+- 检查 Tavily API Key 是否配置
+- 或使用其他搜索工具替代 Tavily
 
 ### 问题 3: 飞书文档创建失败
 
 **症状**: `Feishu API permission denied`
 
 **解决方案**:
-1. 检查飞书应用权限是否完整
-2. 检查 App ID 和 App Secret 是否正确
-3. 重启 Gateway: `openclaw gateway restart`
+1. 检查飞书配置是否正确
+2. 重启 Gateway: `openclaw gateway restart`
 
 ### 问题 4: 文档内容为空
 
@@ -491,20 +366,9 @@ export TAVILY_API_KEY="tvly-xxxxxxxx"
 
 ## 🔒 安全提示 / Security Notice
 
-⚠️ **重要**: 以下敏感信息**绝对不能**提交到 Git 仓库：
+⚠️ **重要**: 请勿将 API Keys、Secrets 等敏感信息提交到 Git 仓库。
 
-- ❌ API Keys (Bailian, Tavily, etc.)
-- ❌ App Secrets (Feishu)
-- ❌ 个人凭证和令牌
-- ❌ 密码和私钥
-
-**正确做法**：
-1. 使用环境变量存储敏感信息
-2. 在配置文件中用 `YOUR_XXX` 占位符
-3. 确保 `.gitignore` 已配置
-4. 提交前检查：`git status`
-
-本仓库已配置 `.gitignore`，但请始终在提交前检查！
+本仓库已配置 `.gitignore`，提交前请检查：`git status`
 
 ---
 
