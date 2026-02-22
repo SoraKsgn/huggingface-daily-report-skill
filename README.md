@@ -3,7 +3,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![OpenClaw](https://img.shields.io/badge/OpenClaw-Skill-blue)](https://openclaw.ai)
 [![GitHub](https://img.shields.io/github/stars/SoraKsgn/huggingface-daily-report-skill?style=social)](https://github.com/SoraKsgn/huggingface-daily-report-skill)
-[![Model](https://img.shields.io/badge/Model-Qwen3.5--Plus-purple)](https://bailian.aliyun.com/)
 
 **自动化生成每日 HuggingFace 论文研究报告的 OpenClaw Skill**
 
@@ -78,32 +77,20 @@ ls ~/.openclaw/workspace/skills/
 
 | 组件 | 说明 | 必需 |
 |------|------|------|
-| **模型** | Qwen3.5-Plus (阿里云百炼) | ✅ 是 |
-| **搜索** | Tavily AI Search | ⚠️ 推荐（可替换） |
+| **模型** | 任意 LLM（测试使用 Qwen3.5-Plus） | ❌ 否（可替换） |
+| **搜索** | Tavily AI Search | ❌ 否（可替换） |
 | **平台** | 飞书 (Feishu) | ✅ 是 |
 
 **说明**：
-- **Qwen3.5-Plus**: 用于论文内容分析和报告生成
-- **Tavily**: 用于搜索 HuggingFace Daily Papers（可用其他搜索方式替代）
+- **模型**: 可使用任意 LLM（测试使用 Qwen3.5-Plus）
+- **搜索**: 可使用 Tavily 或其他搜索工具
 - **飞书**: 用于文档创建和消息推送
 
-> 💡 **提示**: 你可以根据自己的需求替换搜索工具或模型，只需修改 `SKILL.md` 中的相关配置即可。
+> 💡 **提示**: 所有组件都可根据你的需求替换，只需修改 `SKILL.md` 中的相关配置即可。
 
 ---
 
 ## 📦 安装步骤 / Installation
-
-### 方式 1: 通过 ClawHub 安装（推荐）
-
-```bash
-# 安装技能
-clawhub install huggingface-daily-report
-
-# 验证安装
-ls ~/.openclaw/workspace/skills/huggingface-daily-report/
-```
-
-### 方式 2: 手动克隆
 
 ```bash
 # 1. 克隆仓库
@@ -114,13 +101,6 @@ cp -r huggingface-daily-report-skill ~/.openclaw/workspace/skills/
 
 # 3. 验证安装
 ls ~/.openclaw/workspace/skills/huggingface-daily-report/
-```
-
-### 方式 3: 本地开发
-
-```bash
-# 技能已在本地目录
-cd ~/.openclaw/workspace/skills/huggingface-daily-report/
 ```
 
 ---
@@ -290,20 +270,7 @@ openclaw cron list
 
 ## 🔧 故障排查 / Troubleshooting
 
-### 问题 1: 消息发送失败
-
-**症状**: `cron announce delivery failed`
-
-**解决方案**:
-```json
-// 确保 cron 配置正确
-{
-  "sessionTarget": "main",
-  "delivery": { "mode": "message" }
-}
-```
-
-### 问题 2: Tavily 搜索失败
+### 问题 1: Tavily 搜索失败
 
 **症状**: `Tavily API key not found`
 
@@ -311,7 +278,7 @@ openclaw cron list
 - 检查 Tavily API Key 是否配置
 - 或使用其他搜索工具替代 Tavily
 
-### 问题 3: 飞书文档创建失败
+### 问题 2: 飞书文档创建失败
 
 **症状**: `Feishu API permission denied`
 
@@ -319,7 +286,7 @@ openclaw cron list
 1. 检查飞书配置是否正确
 2. 重启 Gateway: `openclaw gateway restart`
 
-### 问题 4: 文档内容为空
+### 问题 3: 文档内容为空
 
 **症状**: 文档创建了但是空白
 
