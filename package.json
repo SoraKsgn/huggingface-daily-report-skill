@@ -1,0 +1,36 @@
+{
+  "name": "huggingface-daily-report",
+  "version": "1.0.0",
+  "description": "Generates daily HuggingFace Papers research reports with detailed paper analysis, Bitable integration, and Feishu document creation",
+  "author": "蛋仔 🐰",
+  "license": "MIT",
+  "keywords": [
+    "huggingface",
+    "daily-papers",
+    "research-report",
+    "feishu",
+    "tavily",
+    "ai-research"
+  ],
+  "openclaw": {
+    "minVersion": "2026.2.15",
+    "requires": {
+      "bins": ["node"]
+    },
+    "skills": [
+      "tavily-search",
+      "feishu-doc",
+      "feishu-bitable"
+    ]
+  },
+  "scripts": {
+    "generate": "node scripts/generate_report.js",
+    "create-doc": "node scripts/create_document.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/huggingface-daily-report-skill"
+  },
+  "homepage": "https://clawhub.com/skills/huggingface-daily-report",
+  "bugs": "https://github.com/your-username/huggingface-daily-report-skill/issues"
+}
