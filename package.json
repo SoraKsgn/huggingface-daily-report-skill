@@ -29,8 +29,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/huggingface-daily-report-skill"
+    "url": "https://github.com/SoraKsgn/huggingface-daily-report-skill"
   },
-  "homepage": "https://clawhub.com/skills/huggingface-daily-report",
-  "bugs": "https://github.com/your-username/huggingface-daily-report-skill/issues"
+  "homepage": "https://github.com/SoraKsgn/huggingface-daily-report-skill",
+  "bugs": "https://github.com/SoraKsgn/huggingface-daily-report-skill/issues"
 }
