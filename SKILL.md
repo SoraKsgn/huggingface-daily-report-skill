@@ -95,26 +95,28 @@ node scripts/create_document.js --title "Report Title"
 
 **📅 提交日期**: YYYY 年 M 月 D 日
 
+**🔥 热度**: 当日最热 / 高度关注 / 持续上升 / 新兴热点
+
 **🔬 研究方向**: [研究方向，例如：Agentic RL, Multimodal, Spatial Reasoning, Code Generation, etc.]
 
-**🔗 链接**: 
-- 项目地址：https://...
-- arXiv 地址：https://arxiv.org/abs/...
-- PDF 地址：https://arxiv.org/pdf/...
-- HF Papers 地址：https://huggingface.co/papers/...
-
 **📌 核心贡献**:
-Brief description of the core contribution.
+详细描述核心贡献（2-3 句话）。必须清晰说明论文的主要创新点和解决的问题。
 
 **🔬 关键技术**:
-1. **Technique 1**: Description
-2. **Technique 2**: Description
-3. **Technique 3**: Description
+- **Technique 1**: 简短描述
+- **Technique 2**: 简短描述
+- **Technique 3**: 简短描述
 
 **📊 实验结果**:
-- Result 1 with metrics
-- Result 2 with metrics
-- Key findings
+- 具体的实验结果和性能指标
+- 与 baseline 的对比数据
+- 关键发现和洞察
+
+**🔗 链接**: 
+- HF Papers 地址：https://huggingface.co/papers/...（必需）
+- arXiv 地址：https://arxiv.org/abs/...
+- PDF 地址：https://arxiv.org/pdf/...
+- 项目地址：https://...
 
 ---
 
@@ -203,6 +205,7 @@ When sending via `message` tool:
 - Use `action="send"`
 - Format report with clear sections and emoji
 - **Include HF Papers link for EACH paper** (required)
+- **Include 核心贡献，关键技术，实验结果 for each paper** (required)
 - Include document link at the end
 - Keep it readable (use bullet points, bold text)
 - For Feishu channel: omit `target` to reply to current conversation
@@ -211,7 +214,7 @@ Example:
 ```json
 {
   "action": "send",
-  "message": "📊 HuggingFace Daily Report - 2026-02-22\n\n【1. Paper Title - Institution】\n🏢 机构：XXX\n🔬 研究方向：Agentic RL / Multimodal / Spatial Reasoning\n📌 核心：...\n📊 结果：...\n🔗 HF Papers: https://huggingface.co/papers/...\n\n【2. Paper Title - Institution】\n🔬 研究方向：Code Generation / Efficiency\n...\n🔗 HF Papers: https://huggingface.co/papers/...\n\n📈 今日趋势：\n• Trend 1\n• Trend 2\n\n📄 完整文档：https://feishu.cn/docx/..."
+  "message": "📊 HuggingFace Daily Report - 2026-02-22\n\n【1. Paper Title - Institution】\n🔥 热度：当日最热\n🔬 方向：Agentic RL / Multimodal\n📌 核心：详细描述核心贡献\n🔬 技术：Technique1, Technique2, Technique3\n📊 结果：具体的实验结果和性能指标\n🔗 HF Papers: https://huggingface.co/papers/...\n\n【2. Paper Title - Institution】\n🔥 热度：高度关注\n🔬 方向：Code Generation / Efficiency\n📌 核心：...\n🔬 技术：...\n📊 结果：...\n🔗 HF Papers: https://huggingface.co/papers/...\n\n📈 今日趋势：高效模型、具身智能成为热点\n\n📄 完整文档：https://feishu.cn/docx/...\n\n*报告由 蛋仔 🐰 整理*"
 }
 ```
 
